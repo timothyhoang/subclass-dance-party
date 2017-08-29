@@ -21,17 +21,18 @@ body, a:link, a:visited, a:active{
   background-color: #777;
 }
 .dancer{
-  border:10px solid red;
-  border-radius:10px;
+  background: red;
   position:absolute;
 }
 .dancer.bouncy{
-  border:10px solid blue;
-  border-radius:10px;
+  background: blue;
   position:absolute;
 }
 .dancer.spinny{
-  border:10px solid yellow;
-  border-radius:10px;
+  background: yellow;
+  position:absolute;
+}
+.dancer.random-walky{
+  background: green;
   position:absolute;
 }
