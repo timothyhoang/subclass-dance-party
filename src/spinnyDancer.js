@@ -8,6 +8,8 @@ var SpinnyDancer = function(top, left, timeBetweenSteps) {
   
   Dancer.call(this, top, left, timeBetweenSteps);
   this.$node.addClass('spinny');
+
+  this.color = 'yellow';
 };
 
 SpinnyDancer.prototype = Object.create(Dancer.prototype);

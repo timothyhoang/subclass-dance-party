@@ -27,6 +27,9 @@ $(document).ready(function() {
       Math.ceil($('body').width() * Math.random()),
       Math.random() * 1000
     );
+
+    dancers.push(dancer);
+
     $('body').append(dancer.$node);
   });
 });

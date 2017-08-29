@@ -1,11 +1,10 @@
 var BouncyDancer = function(top, left, timeBetweenSteps) {
-  this.oldStep = Dancer.prototype.step;
-  
   this.incrementX = 100;
   this.incrementY = 100;
-  
+  this.oldStep = Dancer.prototype.step;
   Dancer.call(this, top, left, timeBetweenSteps);
   this.$node.addClass('bouncy');
+  this.color = 'blue';
 };
 
 BouncyDancer.prototype = Object.create(Dancer.prototype);
