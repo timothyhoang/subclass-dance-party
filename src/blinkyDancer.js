@@ -1,4 +1,5 @@
 var BlinkyDancer = function(top, left, timeBetweenSteps) {
+  this.color = 'red';
   this.oldStep = Dancer.prototype.step;
   Dancer.call(this, top, left, timeBetweenSteps);
   this.$node.addClass('blinky');

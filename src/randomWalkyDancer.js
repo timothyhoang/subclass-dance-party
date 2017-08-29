@@ -1,8 +1,9 @@
-var RandomWalkyDancer = function(top, left) {
-  this.oldStep = Dancer.prototype.step;
-  Dancer.call(this, top, left, 10);
-  this.$node.addClass('random-walky');
+var RandomWalkyDancer = function(top, left, timeBetweenSteps) {
   this.color = 'green';
+  this.speed = 100;
+  this.oldStep = Dancer.prototype.step;
+  Dancer.call(this, top, left, timeBetweenSteps);
+  this.$node.addClass('random-walky');
 };
 
 RandomWalkyDancer.prototype = Object.create(Dancer.prototype);
@@ -11,15 +12,15 @@ RandomWalkyDancer.prototype.constructor = RandomWalkyDancer;
 RandomWalkyDancer.prototype.step = function() {
   this.oldStep();
   
-  this.x += 20 * Math.random() - 10;
-  this.y += 20 * Math.random() - 10;
+  this.x += this.speed * Math.random() - this.speed / 2;
+  this.y += this.speed * Math.random() - this.speed / 2;
   
-  if (this.x < 0 || this.x > this.maxWidth) {
-    this.x = (this.x < 0) ? 0 : Math.min(this.x, this.maxWidth);
+  if (this.x < this.minXPos || this.x > this.maxXPos) {
+    this.x = (this.x < this.minXPos) ? this.minXPos : Math.min(this.x, this.maxXPos);
   }
 
-  if (this.y < 0 || this.y > this.maxHeight) {
-    this.y = (this.y < 0) ? 0 : Math.min(this.y, this.maxHeight);
+  if (this.y < this.minYPos || this.y > this.maxYPos) {
+    this.y = (this.y < this.minYPos) ? this.minYPos : Math.min(this.y, this.maxYPos);
   }
 
   this.setPosition(this.y, this.x);

@@ -32,5 +32,20 @@ $(document).ready(function() {
 
     $('body').append(dancer.$node);
   });
+
+  $('.lineUpOnX').on('click', function(event) {
+    for (var i = 0; i < dancers.length; i++) {
+      var dancer = dancers[i];
+      dancer.lineUp(1000, 'v');
+    }
+  });
+
+  $('.lineUpOnY').on('click', function(event) {
+    for (var i = 0; i < dancers.length; i++) {
+      var dancer = dancers[i];
+      dancer.lineUp(1000, 'h');
+    }
+  });
+
 });
 
