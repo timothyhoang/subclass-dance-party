@@ -12,6 +12,7 @@ BouncyDancer.prototype = Object.create(Dancer.prototype);
 BouncyDancer.prototype.constructor = BouncyDancer;
 
 BouncyDancer.prototype.step = function() {
+  this.$node.removeClass('animated rotateIn infinite');
   this.oldStep();
 
   var newX = this.getNewXPosition();
@@ -38,11 +39,11 @@ BouncyDancer.prototype.interaction = function() {
   var nearestNeighbor = this.getNearestNeighbor(this.triggerDistance);
   if (nearestNeighbor) {
     this.$node.addClass('animated rotateIn infinite');
-    nearestNeighbor.$node.addClass('animated rotateIn infinite');
+    //nearestNeighbor.$node.addClass('animated rotateIn infinite');
 
     if (this.prevNearestNeighbor !== nearestNeighbor) {
-      this.incrementX = -this.incrementX;
-      this.incrementY = -this.incrementY;
+      this.incrementX = Math.random() > 0.5 ? -this.incrementX : this.incrementX;
+      this.incrementY = Math.random() > 0.5 ? -this.incrementY : this.incrementX;
     }
   }
   this.prevNearestNeighbor = nearestNeighbor;

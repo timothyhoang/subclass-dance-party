@@ -1,9 +1,9 @@
 var SpinnyDancer = function(top, left, timeBetweenSteps) {
   this.centerX = left;
   this.centerY = top;
-  this.radius = 50;
+  this.radius = Math.random() * 150 + 25;
   this.theta = 0;
-  this.period = Math.PI / 128;
+  this.period = Math.PI / 16;
   this.color = 'yellow';
   this.oldStep = Dancer.prototype.step;
   this.oldInit = Dancer.prototype.init;
@@ -15,6 +15,7 @@ SpinnyDancer.prototype = Object.create(Dancer.prototype);
 SpinnyDancer.prototype.constructor = SpinnyDancer;
 
 SpinnyDancer.prototype.step = function() {
+  this.$node.removeClass('animated rubberBand infinite');
   this.oldStep();
   
   this.x = this.centerX + this.radius * Math.cos(this.theta);
@@ -22,6 +23,23 @@ SpinnyDancer.prototype.step = function() {
   this.theta += this.period % (2 * Math.PI);
   
   this.setPosition(this.y, this.x);
+};
+
+SpinnyDancer.prototype.interaction = function() {
+  var nearestNeighbor = this.getNearestNeighbor(this.triggerDistance);
+  if (nearestNeighbor) {
+    this.$node.addClass('animated rubberBand infinite');
+
+    if (this.prevNearestNeighbor !== nearestNeighbor) {
+      this.period = -this.period;
+      this.radius = Math.random() * 150 + 25;
+      this.centerX += Math.random() * 5 - 2.5;
+      this.centerY += Math.random() * 5 - 2.5;
+      this.init(this.centerY, this.centerX);
+    }
+
+  }
+  this.prevNearestNeighbor = nearestNeighbor;
 };
 
 SpinnyDancer.prototype.init = function(top, left) {

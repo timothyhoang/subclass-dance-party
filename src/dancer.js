@@ -18,8 +18,9 @@ var Dancer = function(top, left, timeBetweenSteps) {
 };
 
 Dancer.prototype.step = function() {
-  this.interaction();
   this.$node.removeClass('infinite');
+
+  this.interaction();
   setTimeout(this.step.bind(this), this.timeBetweenSteps);
   if (this.timeBetweenSteps !== this.defaultTimeBetweenSteps) {
     this.timeBetweenSteps = this.defaultTimeBetweenSteps;
@@ -29,8 +30,8 @@ Dancer.prototype.step = function() {
 Dancer.prototype.interaction = function() {
   var nearestNeighbor = this.getNearestNeighbor(this.triggerDistance);
   if (nearestNeighbor) {
-    this.$node.addClass('animated rotateIn infinite');
-    nearestNeighbor.$node.addClass('animated rotateIn infinite');
+    //this.$node.addClass('animated rotateIn infinite');
+    //nearestNeighbor.$node.addClass('animated rotateIn infinite');
   }
   this.prevNearestNeighbor = nearestNeighbor;
 };
