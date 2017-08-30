@@ -18,8 +18,6 @@ var Dancer = function(top, left, timeBetweenSteps) {
 };
 
 Dancer.prototype.step = function() {
-  this.$node.removeClass('infinite');
-
   this.interaction();
   setTimeout(this.step.bind(this), this.timeBetweenSteps);
   if (this.timeBetweenSteps !== this.defaultTimeBetweenSteps) {
