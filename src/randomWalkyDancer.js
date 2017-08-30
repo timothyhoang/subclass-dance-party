@@ -1,6 +1,6 @@
 var RandomWalkyDancer = function(top, left, timeBetweenSteps) {
   this.color = 'green';
-  this.speed = 100;
+  this.speed = 10;
   this.oldStep = Dancer.prototype.step;
   Dancer.call(this, top, left, timeBetweenSteps);
   this.$node.addClass('random-walky');

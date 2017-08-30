@@ -25,7 +25,7 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       Math.ceil($('body').height() * Math.random()),
       Math.ceil($('body').width() * Math.random()),
-      Math.random() * 1000
+      Math.random() * 100 + 25
     );
 
     dancers.push(dancer);

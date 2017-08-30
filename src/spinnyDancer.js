@@ -3,7 +3,8 @@ var SpinnyDancer = function(top, left, timeBetweenSteps) {
   this.centerY = top;
   this.radius = 50;
   this.theta = 0;
-  this.color = 'yellow';    
+  this.period = Math.PI / 128;
+  this.color = 'yellow';
   this.oldStep = Dancer.prototype.step;
   this.oldInit = Dancer.prototype.init;
   Dancer.call(this, top, left, timeBetweenSteps);
@@ -18,7 +19,7 @@ SpinnyDancer.prototype.step = function() {
   
   this.x = this.centerX + this.radius * Math.cos(this.theta);
   this.y = this.centerY + this.radius * Math.sin(this.theta);
-  this.theta += (Math.PI / 8) % (2 * Math.PI);
+  this.theta += this.period % (2 * Math.PI);
   
   this.setPosition(this.y, this.x);
 };

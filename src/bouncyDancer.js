@@ -1,7 +1,8 @@
 var BouncyDancer = function(top, left, timeBetweenSteps) {
-  this.incrementX = 50;
-  this.incrementY = 50;
+  this.incrementX = 10;
+  this.incrementY = 10;
   this.color = 'blue';
+  // this.oldInteraction = Dancer.prototype.interaction;
   this.oldStep = Dancer.prototype.step;
   Dancer.call(this, top, left, timeBetweenSteps);
   this.$node.addClass('bouncy');
@@ -31,6 +32,20 @@ BouncyDancer.prototype.step = function() {
   this.setPosition(newY, newX);
   this.x = newX;
   this.y = newY;
+};
+
+BouncyDancer.prototype.interaction = function() {
+  var nearestNeighbor = this.getNearestNeighbor(this.triggerDistance);
+  if (nearestNeighbor) {
+    this.$node.addClass('animated rotateIn infinite');
+    nearestNeighbor.$node.addClass('animated rotateIn infinite');
+
+    if (this.prevNearestNeighbor !== nearestNeighbor) {
+      this.incrementX = -this.incrementX;
+      this.incrementY = -this.incrementY;
+    }
+  }
+  this.prevNearestNeighbor = nearestNeighbor;
 };
 
 BouncyDancer.prototype.getNewXPosition = function() {
